@@ -59,7 +59,7 @@ extern "C" {
  *
  * @section about-license License
  *
- * Copyright (c) 2015-2017 CESNET, z.s.p.o.
+ * Copyright (c) 2015-2020 CESNET, z.s.p.o.
  *
  * (The BSD 3-Clause License)
  *
@@ -80,28 +80,26 @@ extern "C" {
 /**
  * @page howto libyang API Overview
  *
- * - @subpage howtocontext
- * - @subpage howtoschemas
- * - @subpage howtodata
- * - @subpage howtoxpath
- * - @subpage howtoxml
- * - @subpage howtothreads
- * - @subpage howtologger
- * - @subpage howtoplugins
- * - @subpage howtostructures
- */
-
-/**
- * @internal
- * @page internals Developers' Notes
- * @tableofcontents
+ * @section howtoGeneral General notes
  *
- * Following texts describes various internal subsystems and mechanism in libyang which are hidden from external users, but important
- * for libyang developers. The texts should explain various decisions made and internal processes utilized in libyang.
+ * libyang is primarily intended for handling data modeled by YANG modeling language, so the library is supposed to be optimized
+ * for this purpose. However, as a side effect, the library has to be able precisely process YANG modules. Thus, it is usable by
+ * YANG module authors to validate their modules and schemas in the development process.
+ *
+ * - @subpage howtoStructures
+ * - @subpage howtoErrors
+ * - @subpage howtoLogger
+ * - @subpage howtoThreads
+ * - @subpage howtoContext
+ * - @subpage howtoSchemas
+ * - @subpage howtoData
+ * - @subpage howtoXpath
+ * - @subpage howtoXml
+ * - @subpage howtoPlugins
  */
 
 /**
- * @page howtostructures Data Structures
+ * @page howtoStructures Data Structures
  *
  * @section sizedarrays Sized Arrays
  *
@@ -114,7 +112,7 @@ extern "C" {
  * The sized arrays must be carefully freed (which should be done anyway only internally), since pointers to the sized arrays used
  * in libyang structures, does not point to the beginning of the allocated space.
  *
- * - ::LY_ARRAY_SIZE
+ * - ::LY_ARRAY_COUNT
  * - ::LY_ARRAY_FOR
  *
  * @section struct_lists Lists
@@ -123,7 +121,7 @@ extern "C" {
  */
 
 /**
- * @page howtoplugins Plugins
+ * @page howtoPlugins Plugins
  *
  * libyang supports several types of plugins to better support generic features of YANG that need some specific code for
  * their specific instances in YANG schemas. This is the case of YANG types, which are derived from YANG built-in types
@@ -132,7 +130,20 @@ extern "C" {
  * are YANG extensions. For YANG extensions, most of the specification stays in their description (e.g. allowed substatements
  * or place of the extension instanciation) and libyang is not able to process such a text in a generic way. In both cases,
  * libyang provides API to provide functionality implementing the specifics of each type or extension.
+ *
+ * - @subpage howtoPluginsTypes
+ * - @subpage howtoPluginsExtensions
  */
+
+/**
+ * @internal
+ * @page internals Developers' Notes
+ * @tableofcontents
+ *
+ * Following texts describes various internal subsystems and mechanism in libyang which are hidden from external users, but important
+ * for libyang developers. The texts should explain various decisions made and internal processes utilized in libyang.
+ */
+
 #ifdef __cplusplus
 }
 #endif
